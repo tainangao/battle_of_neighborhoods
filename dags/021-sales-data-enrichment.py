@@ -22,16 +22,17 @@ API_KEY = 'AIzaSyDDxZ_AAK8zH78td088DYo3vAP6_tu1Wkc'
 # Backoff time sets how many minutes to wait between google pings when your API limit is hit
 BACKOFF_TIME = 30
 # Set your output file name here.
-output_filename = 'Manhattan geo.csv'
+output_filename = 'sales_geo.csv'
 # Set your input file here
-input_filename = df
+input_filename = 'dags/data/sales.csv'
 # Specify the column name in your input data that contains addresses here
-address_column_name = "FULL ADDRESS"
+address_column_name = "full_address"
 # Return Full Google Results? If True, full JSON results from Google are included in output
 RETURN_FULL_RESULTS = False
 
 # Make a big list of all of the addresses to be processed.
-addresses = df['FULL ADDRESS'].tolist()  # TODO
+df = pd.read_csv(input_filename)
+addresses = df[address_column_name].tolist()  # TODO
 
 
 def get_google_results(address, api_key=None, return_full_response=False):
