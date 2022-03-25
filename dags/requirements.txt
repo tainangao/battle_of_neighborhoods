@@ -2,7 +2,10 @@ pip==21.1.2
 setuptools==57.0.0
 wheel==0.36.2
 geocoder
-requests
+requests==2.27.1
 logging
-pandas
+pandas==1.4.1
 shapely
+xlrd==2.0.1
+openpyxl==3.0.9
+et-xmlfile==1.1.0
