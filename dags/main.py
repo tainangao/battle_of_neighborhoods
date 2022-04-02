@@ -1,11 +1,20 @@
 from __future__ import print_function
-
 import datetime
-
 from airflow import models
 from airflow.operators import bash_operator
 from airflow.operators import python_operator
+import configparser
+import logging
 
+logger = logging.getLogger("root")
+logger.setLevel(logging.DEBUG)
+# create console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+logger.addHandler(ch)
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 default_dag_args = {
     # The start_date describes when a DAG is valid / can be run. Set this to a
@@ -19,8 +28,8 @@ default_dag_args = {
 # Any task you create within the context manager is automatically added to the
 # DAG object.
 with models.DAG(
-        'composer_sample_simple_greeting',
-        schedule_interval=datetime.timedelta(days=1),
+        'the_battle_of_neighborhoods',
+        schedule_interval=None,
         default_args=default_dag_args) as dag:
     def greeting():
         import logging
